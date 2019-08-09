@@ -19,7 +19,7 @@ function withPromisePortal<Config: {}>(
           '[withPromisePortal]: PromisePortalContext is undefined',
         );
 
-        return <Component {...props} ref={ref} portal={context} />;
+        return <Component {...props} ref={ref} promisePortal={context} />;
       }}
     </PromisePortalContext.Consumer>
   ));
