@@ -37,7 +37,6 @@
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-flow": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
-    "babel-eslint": "^10.0.0",
     "babel-plugin-dev-expression": "^0.2.2",
     "eslint": "^6.6.0",
     "eslint-config-fbjs": "^3.0.0",

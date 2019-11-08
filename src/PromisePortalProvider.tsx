@@ -1,19 +1,15 @@
-// @flow
-
-'use strict';
-
 import React from 'react';
-import type {Node} from 'react';
 
+// project
 import PromisePortalContext from './PromisePortalContext';
 
 type Props = {
-  children: Node,
+  children: React.ReactNode,
 };
 
-function PromisePortalProvider({children}: Props) {
+const PromisePortalProvider: React.FC<Props> = ({children}: Props) => {
   const count = React.useRef(0);
-  const [elements, setElements] = React.useState([]);
+  const [elements, setElements] = React.useState<Array<Portal>>([]);
 
   const close = React.useCallback(id => {
     setElements(elements => elements.filter(x => x.id !== id));
@@ -32,9 +28,8 @@ function PromisePortalProvider({children}: Props) {
               resolve(false);
               close(id);
             },
-            onConfirm: value => {
-              const returnValue =
-                value instanceof Event || value?.nativeEvent ? true : value;
+            onConfirm: (value: React.SyntheticEvent | Event) => {
+              const returnValue = value instanceof Event || value?.nativeEvent ? true : value;
               resolve(returnValue);
               close(id);
             },
@@ -53,6 +48,6 @@ function PromisePortalProvider({children}: Props) {
       ))}
     </PromisePortalContext.Provider>
   );
-}
+};
 
 export default PromisePortalProvider;
