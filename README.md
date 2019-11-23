@@ -6,18 +6,17 @@ Promise portals for React
 
 Using [npm](https://www.npmjs.com/):
 
-    $ npm install --save react-promiseportal
+    $ npm install react-promiseportal
 
 Using [yarn](https://yarnpkg.com/):
 
     $ yarn add react-promiseportal
 
-
 Then with a module bundler like [webpack](https://webpack.github.io/), use as you would anything else:
 
 ```js
 // Using ES6 Modules
-import {usePromisePortal} from 'react-promiseportal';
+import { usePromisePortal } from 'react-promiseportal';
 // using CommonJS modules
 const usePromisePortal = require('react-promiseportal').usePromisePortal;
 ```
@@ -42,14 +41,16 @@ function App() {
           onClick={() => {
             alert('You confirmed!');
             setOpen(false);
-          }}>
+          }}
+        >
           Confirm
         </button>
         <button
           onClick={() => {
             alert('You cancelled.');
             setOpen(false);
-          }}>
+          }}
+        >
           Cancel
         </button>
       </SomeModalComponent>
@@ -59,7 +60,7 @@ function App() {
 ```
 
 In large components, managing several modals with different `isOpen` state can be confusing.  
-With `react-promiseportal`, I offer complete co-location.  
+With `react-promiseportal`, I offer complete co-location.
 
 ## Usage
 
@@ -68,7 +69,7 @@ At the top-level of your application, import the `PromisePortalProvider` module.
 ```jsx
 // AppContext.js
 import React from 'react';
-import {PromisePortalProvider} from 'react-promiseportal';
+import { PromisePortalProvider } from 'react-promiseportal';
 
 function AppContext() {
   return (
@@ -84,7 +85,7 @@ You can then import `usePromisePortal` (hook) or `withPromisePortal` (hoc).
 ```jsx
 // App.js
 import React from 'react';
-import {usePromisePortal} from 'react-promiseportal';
+import { usePromisePortal } from 'react-promiseportal';
 
 function App() {
   const portal = usePromisePortal();
@@ -102,7 +103,8 @@ function App() {
 
         if (didConfirm) alert('You confirmed!');
         else alert('You cancelled.');
-      }}>
+      }}
+    >
       Click me to open a modal
     </button>
   );
@@ -110,14 +112,14 @@ function App() {
 ```
 
 Calling `onConfirm` with an Event or a falsy value, will resolve the promise with the value `true`.  
-If called with a truthy value, like an object, this is returned instead.  
+If called with a truthy value, like an object, this is returned instead.
 
 For example, if the `Modal` were instead a form, which returned some input for a request:
 
 ```jsx
 // App.js
 import React from 'react';
-import {usePromisePortal} from 'react-promiseportal';
+import { usePromisePortal } from 'react-promiseportal';
 
 function App() {
   const portal = usePromisePortal();
@@ -129,7 +131,7 @@ function App() {
         const input = await portal((onConfirm, onCancel) => {
           return (
             <SomeFormComponent open>
-              <button onClick={() => onConfirm({potatoes: true})}>
+              <button onClick={() => onConfirm({ potatoes: true })}>
                 Confirm
               </button>
               <button onClick={onCancel}>Cancel</button>
@@ -139,7 +141,8 @@ function App() {
 
         if (input) fetch();
         else alert('You cancelled.');
-      }}>
+      }}
+    >
       Click me to open a modal
     </button>
   );
@@ -151,4 +154,4 @@ function App() {
 react-promiseportal is built and maintained by **babangsund**.  
 [@blog](https://babangsund.com/).  
 [@github](https://github.com/babangsund).  
-[@twitter](https://twitter.com/babangsund). 
+[@twitter](https://twitter.com/babangsund).
